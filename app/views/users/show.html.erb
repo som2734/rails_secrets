@@ -1,0 +1,36 @@
+<nav>
+  <ul class="nav_list">
+    <li><a href="/users/<%= @user.id %>/edit">Edit Profile</a></li>
+    <li><a href="/secrets">Secrets</a></li>
+    <li><a href="/users/<%= @user.id %>">My Secrets</a></li>
+    <li><a href="/users/<%= @user.id %>/profile">Account Info</a></li>
+  </ul>
+</nav>
+<h1>Welcome <%= @user.name %></h1>
+<h2>Secrets</h2>
+
+<form action="/secrets" method="post" class="create_form">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <p>New Secret</p>
+  <textarea name="secret[content]" rows="8" cols="80"></textarea><br>
+  <input type="hidden" name="secret[user_id]" value="<%= @user.id %>">
+  <input type="submit" name="submit" value="Create Secret">
+</form>
+<div class="secrets_wrap">
+  <h4>Secrets</h4>
+  <% @my_s.each do |s| %>
+    <p><%= s.content %></p>
+    <a data-method="delete" href="/secrets/<%= s.id %>"><button class="btn">Delete</button></a></td>
+    <p><%= s.likes.count %> Likes</p>
+  <% end %>
+</div>
+<div class="secrets_liked">
+  <h4>Secrets Liked</h4>
+  <% @my_s.each do |s| %>
+    <% if s.likes.count > 0 %>
+      <p><%= s.content %></p>
+      <a data-method="delete" href="/secrets/<%= s.id %>"><button class="btn">Delete</button></a></td>
+      <p><%= s.likes.count %> Likes</p>
+    <% end %>
+  <% end %>
+</div>

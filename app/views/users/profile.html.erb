@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "secrets_index" %>
+<nav>
+  <ul class="nav_list">
+    <li><a href="/users/<%= @user.id %>/edit">Edit Profile</a></li>
+    <li><a href="/secrets">Secrets</a></li>
+    <li><a href="/users/<%= @user.id %>">My Secrets</a></li>
+  </ul>
+</nav>
+<h1><%= @user.name %>'s Account Info</h1>
+<ul>
+  <li>Name: <%= @user.name %></li>
+  <li>Email: <%= @user.email %></li>
+</ul>
